@@ -12,7 +12,7 @@ function Login() {
         firebase.auth().signInWithEmailAndPassword(email, senha).then(resultado => {
             alert('Usuário Logado!'); //Se for logado apresenta essa mensagem.
         }).catch(Error => {
-            alert(Error);
+            alert('Erro de Usuário ou Senha!');
         });
     }
 
