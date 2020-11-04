@@ -10,7 +10,7 @@ function Login() {
     function logar() {
 
         firebase.auth().signInWithEmailAndPassword(email, senha).then(resultado => {
-            alert('Usuário Logado!');
+            alert('Usuário Logado!'); //Se for logado apresenta essa mensagem.
         }).catch(Error => {
             alert(Error);
         });
@@ -22,13 +22,13 @@ function Login() {
             <form className="form-signin mx-auto">
                 <div className="text-center mb-4">
                     {/*<img className="#" src="#" alt="" width="72" height="72" /> */}
-                    <h1 className="h3 mb-3 font-weight-normal font-weight-bold">Login</h1>
+    <h1 className="h3 mb-3 font-weight-normal font-weight-bold">Login</h1>
                 </div>
 
                 <input onChange={(e) => setEmail(e.target.value)} type="email" id="inputEmail" class="form-control my-2" placeholder="Email" />
                 <input onChange={(e) => setSenha(e.target.value)} type="password" id="inputPassword" class="form-control my-3" placeholder="Senha" />
 
-                <button onClick={logar} class="btn btn-lg btn btn-block btn-login font-weight-bold" type="submit">Entrar</button>
+                <button onClick={logar} class="btn btn-lg btn btn-block btn-login font-weight-bold" type="button">Entrar</button>
 
                 <div className="msg-login  text-center my-3">
                     <span className="text-success"><strong>Você está conectado! &#128521;</strong></span>
@@ -40,7 +40,7 @@ function Login() {
                     <a href="#" className="mx-2">Recuperar Senha</a>
                     <span className="text-secondary">&#9830;</span>
                     <a href="#" className="mx-2">Quero Cadastrar</a>
-                    <p class="mt-5 mb-3 text-muted text-center">Desenvolvido por develop.Work &copy; 2020</p>
+                    <p class="mt-5 mb-3 text-muted text-center">Desenvolvido por <strong>GoWin - Sistemas e Sites</strong> &copy; 2020</p>
                 </div>
             </form>
         </div>
