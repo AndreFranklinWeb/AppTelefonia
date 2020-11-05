@@ -6,13 +6,14 @@ import 'firebase/auth';
 function Login() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [msgTipo, setMsgTipo] = useState('');
 
     function logar() {
 
         firebase.auth().signInWithEmailAndPassword(email, senha).then(resultado => {
-            alert('Usuário Logado!'); //Se for logado apresenta essa mensagem.
+            setMsgTipo('sucesso'); //Se for logado apresenta essa mensagem.
         }).catch(Error => {
-            alert('Erro de Usuário ou Senha!');
+            setMsgTipo('erro');
         });
     }
 
@@ -31,16 +32,16 @@ function Login() {
                 <button onClick={logar} class="btn btn-lg btn btn-block btn-login font-weight-bold" type="button">Entrar</button>
 
                 <div className="msg-login  text-center my-3">
-                    <span className="text-success"><strong>Você está conectado! &#128521;</strong></span>
-                    <br></br>
-                    <span className="text-danger"><strong>Verifique se Usuário ou Senha estão corretos! &#128546;</strong></span>
+                    {msgTipo === 'sucesso' && <span className="text-success"><strong>Você está conectado! &#128521;</strong></span>}
+                    
+                    {msgTipo === 'erro' && <span className="text-danger"><strong>Verifique se Usuário ou Senha estão corretos! &#128546;</strong></span>}                       
                 </div>
 
                 <div className="opçoes-login mt-2 text-center font-weight-bold">
                     <a href="#" className="mx-2">Recuperar Senha</a>
                     <span className="text-secondary">&#9830;</span>
                     <a href="#" className="mx-2">Quero Cadastrar</a>
-                    <p class="mt-5 mb-3 text-muted text-center">Desenvolvido por <strong>GoWin - Sistemas e Sites</strong> &copy; 2020</p>
+                    <p class="mt-5 mb-3 text-muted text-center">Desenvolvido por <strong>FKL - Sistemas e Sites</strong> &copy; 2020</p>
                 </div>
             </form>
         </div>
