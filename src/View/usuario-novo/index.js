@@ -2,15 +2,22 @@ import React, { useState } from 'react';
 import firebase from '../../config/firebase';
 import 'firebase/auth';
 import './usuario-novo.css';
+import { Router } from 'react-router-dom';
+import Navbar from '../../components/navbar/';
+
 
 function NovoUsuario() {
 
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [msgTipo, setMsgTipo] = useState('');
-    const [msg, setMsg] = useState('');
+    const [email, setEmail] = useState();
+    const [senha, setSenha] = useState();
+    const [msgTipo, setMsgTipo] = useState();
+    const [msg, setMsg] = useState();
+    const [carregando, setCarregando] = useState();
 
     function cadastrar() {
+
+        setCarregando(0);
+
         setMsgTipo(null);
 
         if (!email || !senha) {
@@ -18,9 +25,12 @@ function NovoUsuario() {
             setMsg('Você precisa informar email e senha para fazer o cadastro!')
             return;
         }
+
         firebase.auth().createUserWithEmailAndPassword(email, senha).then(resultado => {
+            setCarregando(0);
             setMsgTipo('sucesso')
         }).catch(erro => {
+            setCarregando(0);
             setMsgTipo('erro')
             switch (erro.message) {
                 case 'Password should be at least 6 characters':
@@ -43,23 +53,30 @@ function NovoUsuario() {
     }
 
     return (
-        <div className='form-cadastro'>
-            <form className='text-center form-login mx-auto mt-5'>
-                <h1 className='h3 mb-3 text-black font-weight-bold'>Cadastro</h1>
+        <>
+            <Navbar />
 
-                <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control my-2" placeholder="Email" />
-                <input onChange={(e) => setSenha(e.target.value)} type="password" className="form-control my-2" placeholder="Senha" />
+            <div className='form-cadastro'>
+                <form className='text-center form-login mx-auto mt-5'>
+                    <h1 className='h3 mb-3 text-black font-weight-bold'>Cadastro de Login</h1>
 
-                <button onClick={cadastrar} type="button" className="btn btn-lg btn-block mt-3 mb-5 btn-cadastro">Cadastrar</button>
+                    <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control my-2" placeholder="Email" />
+                    <input onChange={(e) => setSenha(e.target.value)} type="password" className="form-control my-2" placeholder="Senha" />
 
-                <div className="msg-login text-center my-5">
-                    {msgTipo === 'sucesso' && <span className="text-success"> <strong> WoW!</strong>Usuário cadastrado com sucesso! &#128521;</span>}
-                    {msgTipo === 'erro' && <span className="text-danger"><strong>Ops!</strong> {msg} &#128546;</span>}
-                </div>
+                    {
+                        carregando ? <div class="spinner-border text-success" role="status"><span class="sr-only">Loading...</span></div>
+                            : <button onClick={cadastrar} type="button" className="btn btn-lg btn-block mt-3 mb-5 btn-cadastro">Cadastrar</button>
+                    }
 
-            </form>
+                    <div className="msg-login text-center my-5">
+                        {msgTipo === 'sucesso' && <span className="text-success"> <strong> WoW!</strong>Usuário cadastrado com sucesso! &#128521;</span>}
+                        {msgTipo === 'erro' && <span className="text-danger"><strong>Ops!</strong> {msg} &#128546;</span>}
+                    </div>
 
-        </div>
+                </form>
+
+            </div>
+        </>
     )
 }
 

@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import './login.css';
+import { Link } from 'react-router-dom';
+
+
 import firebase from '../../config/firebase';
 import 'firebase/auth';
+
+
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -38,9 +43,9 @@ function Login() {
                 </div>
 
                 <div className="opçoes-login mt-2 text-center font-weight-bold">
-                    <a href="#" className="mx-2">Recuperar Senha</a>
+                    <Link to="#" className="mx-2">Recuperar Senha</Link>
                     <span className="text-secondary">&#9830;</span>
-                    <a href="#" className="mx-2">Quero Cadastrar</a>
+                    <Link to="novousuario" className="mx-2">Quero Cadastrar</Link>
                     <p class="mt-5 mb-3 text-muted text-center">Desenvolvido por <strong>FKL - Sistemas e Sites</strong> &copy; 2020</p>
                 </div>
             </form>

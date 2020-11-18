@@ -12,7 +12,7 @@
 }
 
 .btn-login:hover{
-    background-color: #99CF16;
+    background-color: #0c8520;
     color: #fff;
 }
 
@@ -24,5 +24,5 @@
 }
 
 .opçoes-login a:hover{
-        color: #99CF16;
+        color: #0c8520;
 }
