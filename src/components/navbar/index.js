@@ -7,7 +7,7 @@ function NavBar(){
         <nav className="navbar navbar-expand-lg ">
             <span className="navbar-brand text-white font-weith-bold" href="#">Telefonia</span>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <i classn="fas fa-bars text-white"></i>
+            <i className="fas fa-bars text-white"></i>
 
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">

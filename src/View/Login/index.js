@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './login.css';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
 import firebase from '../../config/firebase';
 import 'firebase/auth';
+
+import { useSelector, useDispatch } from 'react-redux';
 
 
 
@@ -13,18 +15,30 @@ function Login() {
     const [senha, setSenha] = useState('');
     const [msgTipo, setMsgTipo] = useState('');
 
+    const dispatch = useDispatch();    
+
     function logar() {
 
         firebase.auth().signInWithEmailAndPassword(email, senha).then(resultado => {
             setMsgTipo('sucesso'); //Se for logado apresenta essa mensagem.
+            setTimeout(()=>{
+                dispatch({type: 'LOG_IN', usuarioEmail:email})
+            }, 2000);
+            
         }).catch(Error => {
             setMsgTipo('erro');
         });
+        
     }
+
+    
 
     return (
 
         <div className="login-content d-flex align-itens-center">
+
+            {useSelector (state => state.usuarioLogado) > 0 ? <Redirect to = '/' /> : null}
+            
             <form className="form-signin mx-auto">
                 <div className="text-center mb-4">
                     {/*<img className="#" src="#" alt="" width="72" height="72" /> */}
