@@ -31,8 +31,6 @@ function Login() {
         
     }
 
-    
-
     return (
 
         <div className="login-content d-flex align-itens-center">

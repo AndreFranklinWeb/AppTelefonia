@@ -3,7 +3,6 @@ const INITIAL_STATE = {
     usuarioLogado: 0,
 };
 
-
 function usuarioReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'LOG_IN':
@@ -16,4 +15,4 @@ function usuarioReducer(state = INITIAL_STATE, action) {
 
 }
 
-export default usuarioReducer;
+export default usuarioReducer;  
